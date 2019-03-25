@@ -1,0 +1,49 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+
+table {
+  border-collapse: collapse;
+  border: 2px solid black;
+  border-radius: 20px;
+  width: 600px;
+  height: 600px;
+  margin: auto;
+}
+
+
+
+td {
+	text-align: center;
+	font-size: 60px;
+	top: 0;
+	left: 0;
+}
+
+
+.front {
+	width: 110px;
+	height: 110px;
+	position: absolute;
+
+}
+
+.back {
+	position: absolute;
+}
+
+img {
+	width: 125px;
+	height: 125px;
+
+}
+
+button {
+	display: block;
+  width: 150px;
+  text-align: center;
+  margin:0 auto;
+
+}

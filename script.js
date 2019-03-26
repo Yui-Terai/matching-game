@@ -1,67 +1,68 @@
 var cards = [
 {
-    icon: "instagram",
-    img: "img/iconfinder_nature-18_2814514.png"
+    icon: "cherry-blossom",
+    img: "img/cherry-blossom.png"
 },
 {
-    icon: "instagram",
-    img: "img/iconfinder_nature-18_2814514.png"
+    icon: "cherry blossom",
+    img: "img/cherry-blossom.png"
 },
 {
-    icon: "google",
-    img: "img/iconfinder_nature-20_2814519.png"
+    icon: "fuji",
+    img: "img/fuji-mountain.png"
 },
 {
-    icon: "google",
-    img: "img/iconfinder_nature-20_2814519.png"
+    icon: "fuji",
+    img: "img/fuji-mountain.png"
 },
 {
-    icon: "line",
-    img: "img/iconfinder_nature-22_2814513.png"
+    icon: "katana",
+    img: "img/katana.png"
 },
 {
-    icon: "line",
-    img: "img/iconfinder_nature-22_2814513.png"
+    icon: "katana",
+    img: "img/katana.png"
 },
 {
-    icon: "skype",
-    img: "img/iconfinder_nature-23_2814520.png"
+    icon: "maneki",
+    img: "img/maneki-neko.png"
 },
 {
-    icon: "skype",
-    img: "img/iconfinder_nature-23_2814520.png"
+    icon: "maneki",
+    img: "img/maneki-neko.png"
 },
 {
-    icon: "youtube",
-    img: "img/iconfinder_nature-24_2814518.png"
+    icon: "ninja",
+    img: "img/ninja.png"
 },
 {
-    icon: "youtube",
-    img: "img/iconfinder_nature-24_2814518.png"
+
+    icon: "ninja",
+    img: "img/ninja.png"
 },
 {
-    icon: "whatsup",
-    img: "img/iconfinder_nature-26_2814517.png"
+    icon: "origami",
+    img: "img/origami.png"
 },
 {
-    icon: "whatsup",
-    img: "img/iconfinder_nature-26_2814517.png"
+    icon: "origami",
+    img: "img/origami.png"
 },
 {
-    icon: "fb",
-    img: "img/iconfinder_nature-27_2814521.png"
+    icon: "sushi",
+    img: "img/sushi.png"
 },
 {
-    icon: "fb",
-    img: "img/iconfinder_nature-27_2814521.png"
+    icon: "sushi",
+    img: "img/sushi.png"
 },
 {
-    icon: "twitter",
-    img: "img/iconfinder_nature-25_2814516.png"
+    icon: "geisha",
+    img: "img/geisha.png"
 },
 {
-    icon: "twitter",
-    img: "img/iconfinder_nature-25_2814516.png"
+    icon: "geisha",
+    img: "img/geisha.png"
 }
 ];
 
@@ -73,7 +74,7 @@ var createBoard = function() {
          for (j = 0; j < 4; j++) {
              var tile = document.createElement("td");
              var frontImg = document.createElement("img");
-             frontImg.setAttribute("src", "img/iconfinder_icon-plus-square_2867933.png");
+             frontImg.setAttribute("src", "img/circle-512.png");
              tile.appendChild(frontImg);
             row.appendChild(tile);
         }
@@ -91,64 +92,82 @@ for (i = 0; i < images.length; i++) {
     var dataId = images[i].setAttribute("data-id", i);
 }
 
-
 //Create start button
 var startButton = document.createElement("button");
 startButton.innerHTML = "START";
 document.body.appendChild(startButton);
 
 
-
+var flipedCard;
 var firstCard;
 var secondCard;
-
 
 
 var imgElement = document.querySelectorAll("img");
  for (i = 0; i < imgElement.length; i++) {
     imgElement[i].addEventListener("click", function() {
+        this.classList.toggle("open");
+        this.classList.toggle("show");
+        this.classList.toggle("disabled");
+        console.log(this);
+        // this.classList.toggle("flip");
+        console.log(this.classList);
           var cardId = this.getAttribute("data-id");
           this.setAttribute("src", cards[cardId].img);
-         hasFlipped.push(cards[cardId]);
-         if (hasFlipped.length === 2) {
-             checkMatch();
-         }
-       });
+          hasFlipped.push(cards[cardId]);
+          if (hasFlipped.length === 2) {
+            if (hasFlipped[0].img === hasFlipped[1].img) {
+                matched();
+            }
+          }
+        });
  }
 
-//Check for match
 var hasFlipped = [];
-var checkMatch = function() {
-    if (hasFlipped[0] === hasFlipped[1]) {
-        console.log("you win");
-    } else {
-        console.log("you lose");
-    }
+var matched = function(){
+    hasFlipped[0].classList.add("match");
+    hasFlipped[1].classList.add("match");
+    hasFlipped[0].classList.remove("show", "open");
+    hasFlipped[1].classList.remove("show", "open");
 }
 
+//Check for match
+// var checkMatch = function() {
+//     if (hasFlipped[0] === hasFlipped[1]) {
+//         console.log("match");
+//     } else {
+//         console.log("not match");
+//  }
+// }
+// checkMatch();
 
-
-
-
-
-
-// var flipCard = function() {
-//      var cardId = this.getAttribute("data-id");
-//      this.setAttribute("scr", cards[cardId].icon);
-//      hasFlipped.push(cards[cardId].icon);
-//      console.log(imaId);
-
-// };
-
-
-// flipCard();
-
-
-// var cards = document.getElementsByTagName("td");
-
+//     }
+// }
 // var hasFlippedCard = false;
 // var firstCard;
 // var secondCard;
+
+// var flipedCard() {
+//     this.classList.add("flip");
+//     if (!hasFlippedCard) {
+//         hasFlippedCard = true;
+//         firstCard = this;
+//     } else {
+//         hasFlippedCard = false;
+//         secondCard = this;
+
+//         console.log(firstCard, secondCard);
+//     }
+// }
+// flipedCard();
+
+
+
+
+
+
+
+// var hasFlippedCard = false;
 
 // for (i = 0; i < cards.length; i++) {
 //         cards[i].addEventListener("click", function(event) {

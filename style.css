@@ -4,10 +4,14 @@
 }
 
 
+body {
+ background-image: url("img/09-150ppp.jpg");
+}
+
 table {
-  border-collapse: collapse;
+  /*border-collapse: collapse;
   border: 2px solid black;
-  border-radius: 20px;
+  border-radius: 20px;*/
   width: 600px;
   height: 600px;
   margin: auto;

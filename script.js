@@ -69,8 +69,7 @@ var cards = [
 
 var gameBoard = document.createElement("table");
 
-
-var createBoard = function() {
+// var createBoard = function() {
     // var gameBoard = document.createElement("table");
     for (i = 0; i < 4; i++) {
         var row = document.createElement("tr");
@@ -84,16 +83,10 @@ var createBoard = function() {
         gameBoard.appendChild(row);
      }
      document.body.appendChild(gameBoard);
-}
-createBoard();
+// }
+// createBoard();
 
 
-
-var arrayForRandom = [];
-for (i = 0; i < 16; i++) {
-    arrayForRandom.push(Math.floor(Math.random() * 17));
-}
-console.log(arrayForRandom);
 
 
 
@@ -105,10 +98,6 @@ for (i = 0; i < images.length; i++) {
 
 
 
-
-
-
-
 //Create start button
 var startButton = document.createElement("button");
 startButton.innerHTML = "START";
@@ -117,16 +106,46 @@ document.body.appendChild(startButton);
 
 
 
+// var arrayForRandom = [];
+// for (i = 0; i < 16; i++) {
+//     arrayForRandom.push(Math.floor(Math.random() * 17));
+// }
+
+
+// var test = [0,1,2,3];
+
+function shuffleArray(array) {
+   for (var i = array.length - 1; i > 0; i--) {
+       var j = Math.floor(Math.random() * (i + 1));
+       var temp = array[i];
+       array[i] = array[j];
+       array[j] = temp;
+   }
+}
+
+
+
+ shuffleArray(cards);
 var imgElement = document.querySelectorAll("img");
+
+
+
+
 var hasFlipped = [];
  for (i = 0; i < imgElement.length; i++) {
     imgElement[i].addEventListener("click", function() {
-        console.log(this);
-        // this.classList.toggle("flip");
-          var cardId = this.getAttribute("data-id");
-          console.log("im " + arrayForRandom);
-          var shuffleNum =
-          this.setAttribute("src", cards[cardId].img);
+
+
+        // console.log("I'm "+ shuffledItem);
+        // var shuffledImg = shuffledItem.img;
+        // console.log("Im num" + shuffledImg);
+
+          // var cardId = this.getAttribute("data-id");
+// cards[shuffledNum]
+         this.setAttribute("src", cards[this.dataset.id].img);
+    //      console.log(count)
+
+
 
           hasFlipped.push(this);
 
@@ -143,11 +162,15 @@ var hasFlipped = [];
  }
 
 
+
+
+//remain the cards after found match
 function matched(image1, image2){
     hasFlipped = [];
-
 }
 
+
+//flip back to the default image if the cards doesn't match
 function unmatched(image1, image2){
     hasFlipped = [];
     setTimeout(function() {

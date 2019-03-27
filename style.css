@@ -51,3 +51,13 @@ button {
   margin:0 auto;
 
 }
+
+img.flip {
+	width: 20px;
+	height: 30px;
+	/*transform: rotateY(180deg);
+}*/
+
+/*.memory-card.flip {
+  transform: rotateY(180deg);
+}*/

@@ -67,8 +67,11 @@ var cards = [
 ];
 
 
+var gameBoard = document.createElement("table");
+
+
 var createBoard = function() {
-    var gameBoard = document.createElement("table");
+    // var gameBoard = document.createElement("table");
     for (i = 0; i < 4; i++) {
         var row = document.createElement("tr");
          for (j = 0; j < 4; j++) {
@@ -86,11 +89,25 @@ createBoard();
 
 
 
+var arrayForRandom = [];
+for (i = 0; i < 16; i++) {
+    arrayForRandom.push(Math.floor(Math.random() * 17));
+}
+console.log(arrayForRandom);
+
+
+
 //Adding data-id with numbers
 var images = document.querySelectorAll("img");
 for (i = 0; i < images.length; i++) {
-    var dataId = images[i].setAttribute("data-id", i);
+    var setDataId = images[i].setAttribute("data-id", i);
 }
+
+
+
+
+
+
 
 //Create start button
 var startButton = document.createElement("button");
@@ -98,93 +115,42 @@ startButton.innerHTML = "START";
 document.body.appendChild(startButton);
 
 
-var flipedCard;
-var firstCard;
-var secondCard;
 
 
 var imgElement = document.querySelectorAll("img");
+var hasFlipped = [];
  for (i = 0; i < imgElement.length; i++) {
     imgElement[i].addEventListener("click", function() {
-        this.classList.toggle("open");
-        this.classList.toggle("show");
-        this.classList.toggle("disabled");
         console.log(this);
         // this.classList.toggle("flip");
-        console.log(this.classList);
           var cardId = this.getAttribute("data-id");
+          console.log("im " + arrayForRandom);
+          var shuffleNum =
           this.setAttribute("src", cards[cardId].img);
-          hasFlipped.push(cards[cardId]);
+
+          hasFlipped.push(this);
+
           if (hasFlipped.length === 2) {
-            if (hasFlipped[0].img === hasFlipped[1].img) {
-                matched();
+            if (hasFlipped[0].src === hasFlipped[1].src) {
+                matched(hasFlipped[0], hasFlipped[1]);
+                console.log("matched")
+            } else if (hasFlipped[0].src !== hasFlipped[1].src) {
+                unmatched(hasFlipped[0], hasFlipped[1]);
+                console.log("not a match")
             }
           }
         });
  }
 
-var hasFlipped = [];
-var matched = function(){
-    hasFlipped[0].classList.add("match");
-    hasFlipped[1].classList.add("match");
-    hasFlipped[0].classList.remove("show", "open");
-    hasFlipped[1].classList.remove("show", "open");
+
+function matched(image1, image2){
+    hasFlipped = [];
+
 }
 
-//Check for match
-// var checkMatch = function() {
-//     if (hasFlipped[0] === hasFlipped[1]) {
-//         console.log("match");
-//     } else {
-//         console.log("not match");
-//  }
-// }
-// checkMatch();
-
-//     }
-// }
-// var hasFlippedCard = false;
-// var firstCard;
-// var secondCard;
-
-// var flipedCard() {
-//     this.classList.add("flip");
-//     if (!hasFlippedCard) {
-//         hasFlippedCard = true;
-//         firstCard = this;
-//     } else {
-//         hasFlippedCard = false;
-//         secondCard = this;
-
-//         console.log(firstCard, secondCard);
-//     }
-// }
-// flipedCard();
-
-
-
-
-
-
-
-// var hasFlippedCard = false;
-
-// for (i = 0; i < cards.length; i++) {
-//         cards[i].addEventListener("click", function(event) {
-//             if (!hasFlippedCard) {
-//                 hasFlippedCard = true;
-//                 // var newimage = document.createElement("img");
-//                 this.innerHTML =
-//                 firstCard = this;
-//             } else {
-//                 hasFlippedCard = false;
-//                 secondCard = this;
-//             }
-//             // if (firstCard.dataset.img === secondCard.dataset.img) {
-//             //         console.log("match");
-//             //     } else {
-//             //         console.log("not match");
-//             //     }
-
-// });
-// }
+function unmatched(image1, image2){
+    hasFlipped = [];
+    setTimeout(function() {
+    image1.setAttribute("src", "img/circle-512.png");
+    image2.setAttribute("src", "img/circle-512.png"); }, 800);
+}

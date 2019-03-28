@@ -1,90 +1,91 @@
 var cards = [
 {
-    icon: "cherry-blossom",
-    img: "img/cherry-blossom.png"
+    icon: "rocket",
+    img: "img/rocket.png"
 },
 {
-    icon: "cherry blossom",
-    img: "img/cherry-blossom.png"
+    icon: "rocket",
+    img: "img/rocket.png"
 },
 {
-    icon: "fuji",
-    img: "img/fuji-mountain.png"
+    icon: "alien",
+    img: "img/alien.png"
 },
 {
-    icon: "fuji",
-    img: "img/fuji-mountain.png"
+    icon: "alien",
+    img: "img/alien.png"
 },
 {
-    icon: "katana",
-    img: "img/katana.png"
+    icon: "drop",
+    img: "img/drop.png"
 },
 {
-    icon: "katana",
-    img: "img/katana.png"
+    icon: "drop",
+    img: "img/drop.png"
 },
 {
-    icon: "maneki",
-    img: "img/maneki-neko.png"
+    icon: "thunderstorm",
+    img: "img/thunderstorm.png"
 },
 {
-    icon: "maneki",
-    img: "img/maneki-neko.png"
+    icon: "thunderstorm",
+    img: "img/thunderstorm.png"
 },
 {
-    icon: "ninja",
-    img: "img/ninja.png"
+    icon: "moon",
+    img: "img/moon.png"
 },
 {
 
-    icon: "ninja",
-    img: "img/ninja.png"
+    icon: "moon",
+    img: "img/moon.png"
 },
 {
-    icon: "origami",
-    img: "img/origami.png"
+    icon: "octocat",
+    img: "img/octocat.png"
 },
 {
-    icon: "origami",
-    img: "img/origami.png"
+    icon: "octocat",
+    img: "img/octocat.png"
 },
 {
-    icon: "sushi",
-    img: "img/sushi.png"
+    icon: "eye",
+    img: "img/eye.png"
 },
 {
-    icon: "sushi",
-    img: "img/sushi.png"
+    icon: "eye",
+    img: "img/eye.png"
 },
 {
-    icon: "geisha",
-    img: "img/geisha.png"
+    icon: "thunder",
+    img: "img/thunder.png"
 },
 {
-    icon: "geisha",
-    img: "img/geisha.png"
+    icon: "thunder",
+    img: "img/thunder.png"
 }
 ];
 
 
-var gameBoard = document.createElement("table");
 
-// var createBoard = function() {
-    // var gameBoard = document.createElement("table");
+
+//create UI board
+var createBoard = function() {
+    var gameBoard = document.createElement("table");
     for (i = 0; i < 4; i++) {
         var row = document.createElement("tr");
          for (j = 0; j < 4; j++) {
              var tile = document.createElement("td");
              var frontImg = document.createElement("img");
-             frontImg.setAttribute("src", "img/circle-512.png");
+             frontImg.setAttribute("src", "img/icons8-social-octopus-512.png");
              tile.appendChild(frontImg);
             row.appendChild(tile);
         }
         gameBoard.appendChild(row);
      }
      document.body.appendChild(gameBoard);
-// }
-// createBoard();
+}
+createBoard();
 
 
 
@@ -98,22 +99,17 @@ for (i = 0; i < images.length; i++) {
 
 
 
-//Create start button
-var startButton = document.createElement("button");
-startButton.innerHTML = "START";
-document.body.appendChild(startButton);
-
-
-
-
-// var arrayForRandom = [];
-// for (i = 0; i < 16; i++) {
-//     arrayForRandom.push(Math.floor(Math.random() * 17));
+//create a div for telling who is current player
+//  for (i = 0; i < 2; i++) {
+//     var playerPrompt = document.createElement("div");
+//     playerPrompt.className = "player-prompt" + i;
+//     document.body.appendChild(playerPrompt);
 // }
 
 
-// var test = [0,1,2,3];
 
+
+//shuffling the cards
 function shuffleArray(array) {
    for (var i = array.length - 1; i > 0; i--) {
        var j = Math.floor(Math.random() * (i + 1));
@@ -122,42 +118,52 @@ function shuffleArray(array) {
        array[j] = temp;
    }
 }
+shuffleArray(cards);
 
 
 
- shuffleArray(cards);
+
+
+//flip card after click
+var playerTurn = false;
+var hasFlipped = [];
 var imgElement = document.querySelectorAll("img");
 
 
-
-
-var hasFlipped = [];
  for (i = 0; i < imgElement.length; i++) {
     imgElement[i].addEventListener("click", function() {
+        if (!playerTurn) {
+            console.log("its player 1");
+            this.setAttribute("src", cards[this.dataset.id].img);
 
-
-        // console.log("I'm "+ shuffledItem);
-        // var shuffledImg = shuffledItem.img;
-        // console.log("Im num" + shuffledImg);
-
-          // var cardId = this.getAttribute("data-id");
-// cards[shuffledNum]
-         this.setAttribute("src", cards[this.dataset.id].img);
-    //      console.log(count)
-
-
-
-          hasFlipped.push(this);
+            hasFlipped.push(this);
 
           if (hasFlipped.length === 2) {
+            playerTurn = true;
             if (hasFlipped[0].src === hasFlipped[1].src) {
                 matched(hasFlipped[0], hasFlipped[1]);
-                console.log("matched")
             } else if (hasFlipped[0].src !== hasFlipped[1].src) {
                 unmatched(hasFlipped[0], hasFlipped[1]);
-                console.log("not a match")
             }
           }
+
+
+      } else  if (playerTurn = true) {
+        console.log("its player 2")
+        this.setAttribute("src", cards[this.dataset.id].img);
+
+         hasFlipped.push(this);
+
+          if (hasFlipped.length === 2) {
+            playerTurn = false;
+            if (hasFlipped[0].src === hasFlipped[1].src) {
+                matched(hasFlipped[0], hasFlipped[1]);
+                console.log("im player" + score);
+            } else if (hasFlipped[0].src !== hasFlipped[1].src) {
+                unmatched(hasFlipped[0], hasFlipped[1]);
+            }
+          }
+      }
         });
  }
 
@@ -174,6 +180,6 @@ function matched(image1, image2){
 function unmatched(image1, image2){
     hasFlipped = [];
     setTimeout(function() {
-    image1.setAttribute("src", "img/circle-512.png");
-    image2.setAttribute("src", "img/circle-512.png"); }, 800);
+    image1.setAttribute("src", "img/icons8-social-octopus-512.png");
+    image2.setAttribute("src", "img/icons8-social-octopus-512.png"); }, 800);
 }

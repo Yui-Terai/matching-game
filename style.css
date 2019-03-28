@@ -5,59 +5,58 @@
 
 
 body {
- background-image: url("img/09-150ppp.jpg");
+ background-image: url("img/79edf5564289c255bc5dad36ca8ecf73.jpg");
 }
+
 
 table {
-  /*border-collapse: collapse;
-  border: 2px solid black;
-  border-radius: 20px;*/
-  width: 600px;
-  height: 600px;
+  width: 632px;
+  height: 735px;
   margin: auto;
+  padding-top: 235px;
+  text-align: center;
 }
-
 
 
 td {
 	text-align: center;
+	background-color: white;
+	border-radius: 50%;
 	font-size: 60px;
 	top: 0;
 	left: 0;
+	border: double;
 }
 
 
-.front {
-	width: 110px;
-	height: 110px;
-	position: absolute;
 
-}
-
-.back {
-	position: absolute;
-}
 
 img {
-	width: 125px;
-	height: 125px;
-
+	width: 80px;
+	height: 80px;
 }
 
-button {
+/*.player-prompt0 {
+	border: 20px;
+	padding: 8px;
+	background-color: #F6E465;
+	border-radius: 49%;
 	display: block;
-  width: 150px;
+  width: 302px;
+  height: 26px;
   text-align: center;
-  margin:0 auto;
-
+  margin:43px auto;
+  font-family: 'Baloo Chettan', cursive;
 }
 
-img.flip {
-	width: 20px;
-	height: 30px;
-	/*transform: rotateY(180deg);
-}*/
-
-/*.memory-card.flip {
-  transform: rotateY(180deg);
+.player-prompt1 {
+	padding: 8px;
+	background-color: #F6E465;
+	border-radius: 49%;
+	display: block;
+  width: 302px;
+  height: 26px;
+  text-align: center;
+  margin:50px auto;
+  font-family: 'Baloo Chettan', cursive;
 }*/
